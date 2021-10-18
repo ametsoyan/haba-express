@@ -10,28 +10,28 @@ const serverHost = require("./middlewares/serverHost");
 const headers = require("./middlewares/headers");
 const authorization = require("./middlewares/authorization");
 
-const app = express();
+const server = express();
 
-app.use(helmet());
-app.use(compression());
-app.use(logger('dev'));
-app.use(express.json());
-app.use(express.urlencoded({extended: false}));
-app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
-app.use(headers);
-app.use(serverHost);
-app.use(authorization);
-app.set(`trust proxy`, 1);
-app.disable('x-powered-by');
+server.use(helmet());
+server.use(compression());
+server.use(logger('dev'));
+server.use(express.json());
+server.use(express.urlencoded({extended: false}));
+server.use(cookieParser());
+server.use(express.static(path.join(__dirname, 'public')));
+server.use(headers);
+server.use(serverHost);
+server.use(authorization);
+server.set(`trust proxy`, 1);
+server.disable('x-powered-by');
 
-app.use("/", require('./router/index'));
+server.use("/", require('./router/index'));
 
-app.use((req, res, next) => {
+server.use((req, res, next) => {
   next(createError(404));
 });
 
-app.use((err, req, res, next) => {
+server.use((err, req, res, next) => {
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
 
@@ -48,4 +48,4 @@ app.use((err, req, res, next) => {
     });
 });
 
-module.exports = app;
+module.exports = server;

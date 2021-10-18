@@ -4,7 +4,7 @@
  * Module dependencies.
  */
 
-const app = require('../app');
+const app = require('../server');
 const debug = require('debug')('ha-ba:server');
 const http = require('http');
 const cluster = require('cluster');

@@ -1,6 +1,6 @@
 module.exports = function headers(req, res, next) {
   try {
-    const {headers: {origin}} = req;
+    const {headers: {origin} = '*'} = req;
     const allowOrigins = [
       process.env.DOMAIN,
     ];

@@ -3,8 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www",
-    "server": "nodemon -r dotenv/config ./bin/www",
+    "start": "node ./bin/index.js",
+    "server": "nodemon -r dotenv/config ./bin/index.js",
     "migrate": "node -r dotenv/config ./bin/migrate.js dotenv_config_path=.env.prodaction",
     "migrate-dev": "node -r dotenv/config ./bin/migrate.js"
   },
